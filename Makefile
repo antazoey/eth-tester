@@ -46,6 +46,12 @@ docs:
 	python ./newsfragments/validate_files.py
 	towncrier build --draft --version preview
 
+check-docs-ci: build-docs build-docs-ci validate-newsfragments
+
+build-docs-ci:
+	$(MAKE) -C docs latexpdf
+	$(MAKE) -C docs epub
+
 # release commands
 
 package-test: clean

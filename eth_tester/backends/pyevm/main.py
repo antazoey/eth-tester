@@ -1,10 +1,5 @@
 import os
 import time
-from typing import (
-    Dict,
-    List,
-    Union,
-)
 
 from eth_abi import (
     abi,
@@ -601,7 +596,7 @@ class PyEVMBackend(BaseChainBackend):
         )
 
     def get_fee_history(
-        self, block_count=1, newest_block="latest", reward_percentiles: List[int] = ()
+        self, block_count=1, newest_block="latest", reward_percentiles: list[int] = ()
     ):
         if isinstance(block_count, int) and not 1 <= block_count <= 1024:
             raise ValidationError("block_count must be between 1 and 1024")
@@ -807,7 +802,7 @@ class PyEVMBackend(BaseChainBackend):
 
     def apply_withdrawals(
         self,
-        withdrawals_list: List[Dict[str, Union[int, str]]],
+        withdrawals_list: list[dict[str, int | str]],
     ) -> None:
         """
         Apply withdrawals to the state and mine the block that includes the withdrawals.

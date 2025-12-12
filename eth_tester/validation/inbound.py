@@ -1,9 +1,4 @@
 import binascii
-from typing import (
-    Dict,
-    List,
-    Union,
-)
 
 from eth_typing import (
     HexStr,
@@ -423,7 +418,7 @@ INBOUND_WITHDRAWAL_VALIDATORS = {
 
 
 def validate_inbound_withdrawals(
-    withdrawals_list: List[Dict[str, Union[int, str, HexStr, bytes]]],
+    withdrawals_list: list[dict[str, int | str | HexStr | bytes]],
 ):
     if len(withdrawals_list) == 0:
         raise ValidationError("Withdrawals list must not be empty.")
