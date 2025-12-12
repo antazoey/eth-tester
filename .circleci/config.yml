@@ -260,18 +260,6 @@ jobs:
       - <<: *run-tox-step
       - <<: *save-cache-step
 
-  py38-pyevm:
-    <<: *common
-    docker:
-      - image: cimg/python:3.8
-        environment:
-          TOXENV: py38-pyevm
-  py39-pyevm:
-    <<: *common
-    docker:
-      - image: cimg/python:3.9
-        environment:
-          TOXENV: py39-pyevm
   py310-pyevm:
     <<: *common
     docker:
@@ -296,6 +284,12 @@ jobs:
       - image: cimg/python:3.13
         environment:
           TOXENV: py313-pyevm
+  py314-pyevm:
+    <<: *common
+    docker:
+      - image: cimg/python:3.14
+        environment:
+          TOXENV: py314-pyevm
 
 define: &all_jobs
   - docs
@@ -318,12 +312,11 @@ define: &all_jobs
   - py312-windows-wheel
   - py313-windows-wheel
   - py314-windows-wheel
-  - py38-pyevm
-  - py39-pyevm
   - py310-pyevm
   - py311-pyevm
   - py312-pyevm
   - py313-pyevm
+  - py314-pyevm
 
 workflows:
   version: 2

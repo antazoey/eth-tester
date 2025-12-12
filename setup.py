@@ -55,6 +55,10 @@ setup(
     url="https://github.com/ethereum/eth-tester",
     include_package_data=True,
     install_requires=[
+        # Coincurve (eth-keys dep) breaks in Python 3.14.
+        # Fix is in latest, but not yet released
+        # See issue: https://github.com/ofek/coincurve/issues/219
+        "coincurve>=20.0.0,<21;python_version=='3.14'",
         "eth-abi>=3.0.1",
         "eth-account>=0.12.3",
         "eth-keys>=0.4.0",
