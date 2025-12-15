@@ -12,7 +12,7 @@ extras_require = {
         "pre-commit>=3.4.0",
         "tox>=4.0.0",
         "twine",
-        "wheel",
+        "wheel>=0.38.1",
     ],
     "docs": [
         "towncrier>=24,<25",
@@ -55,6 +55,10 @@ setup(
     url="https://github.com/ethereum/eth-tester",
     include_package_data=True,
     install_requires=[
+        # Coincurve (eth-keys dep) breaks in Python 3.14.
+        # Fix is in latest, but not yet released
+        # See issue: https://github.com/ofek/coincurve/issues/219
+        "coincurve>=20.0.0,<21;python_version=='3.14'",
         "eth-abi>=3.0.1",
         "eth-account>=0.12.3",
         "eth-keys>=0.4.0",
@@ -62,10 +66,9 @@ setup(
         "rlp>=3.0.0",
         "semantic_version>=2.6.0",
     ],
+    python_requires=">=3.10, <4",
     extras_require=extras_require,
-    python_requires=">=3.8,<4",
     py_modules=["eth_tester"],
-    license="MIT",
     zip_safe=False,
     keywords="ethereum",
     packages=find_packages(exclude=["scripts", "scripts.*", "tests", "tests.*"]),
@@ -75,11 +78,10 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
     ],
 )
